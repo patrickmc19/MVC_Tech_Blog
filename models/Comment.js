@@ -11,7 +11,7 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    comment_text: {
+    text: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -31,6 +31,11 @@ Comment.init(
         model: "post",
         key: "id",
       },
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
