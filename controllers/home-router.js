@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
     .then((dbPostData) => {
       // pass a single post object into the homepage template
       const posts = dbPostData.map((post) => post.get({ plain: true }));
-      // pass all posts into the homepage template
+      // pass all posts into the rendered homepage template
       res.render("homepage", {
         posts,
         loggedIn: req.session.loggedIn,
@@ -71,7 +71,7 @@ router.get("/post/:id", (req, res) => {
       // serialize the data
       const post = dbPostData.get({ plain: true });
 
-      // pass data to template
+      // pass data to rendered template
       res.render("single-post", {
         post,
         loggedIn: req.session.loggedIn,
@@ -98,10 +98,11 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
     // if user is already logged in, redirect to homepage
-    res.redirect('/');
+    res.redirect("/");
     return;
   }
 
-  res.render('signup');});
+  res.render("signup");
+});
 
 module.exports = router;
