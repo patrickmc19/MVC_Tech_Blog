@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User } = require("../../models");
 const session = require("express-session");
 const withAuth = require("../../utils/auth");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // GET all users
 router.get("/", (req, res) => {
@@ -106,7 +107,7 @@ router.put("/:id", withAuth, (req, res) => {
     },
   })
     .then((userData) => {
-      if (!userData[0]) {
+      if (!userData) {
         res.status(404).json({ message: "No user with this id" });
         return;
       }
