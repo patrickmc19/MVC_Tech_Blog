@@ -23,21 +23,21 @@ app.use(express.urlencoded({ extended: true }));
 // Set up Handlebars.js engine with custom helpers
 
 const sess = {
-    secret: process.env.SECRET,
-    cookie: {
-      maxAge: 3600000,
-      httpOnly: true,
-      secure: false,
-      sameSite: "strict",
-    },
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-      db: sequelize,
-    }),
-  };
+  secret: process.env.SECRET,
+  cookie: {
+    maxAge: 3600000,
+    httpOnly: true,
+    secure: false,
+    sameSite: "strict",
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
 
-  app.use(session(sess));
+app.use(session(sess));
 
 // connect routes
 app.use(router);
@@ -47,7 +47,7 @@ sequelize
   .sync({ force: false })
   .then(() => {
     app.listen(PORT, (err) => {
-      console.log(`Server listening on port ${PORT}!`)
+      console.log(`Server listening on port ${PORT}!`);
       if (err) {
         console.error(err);
         return process.exit(1);

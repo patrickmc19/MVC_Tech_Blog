@@ -65,59 +65,57 @@ router.get("/:id", (req, res) => {
 });
 
 // POST a new post
-router.post('/', withAuth, (req, res) => {
-    Post.create({
-        title: req.body.title,
-        post_text: req.body.post_text,
-        user_id: req.session.user_id
-    })
-    .then(postData => res.json(postData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+router.post("/", withAuth, (req, res) => {
+  Post.create({
+    title: req.body.title,
+    post_text: req.body.post_text,
+    user_id: req.session.user_id,
+  })
+    .then((postData) => res.json(postData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
 // PUT (update) a post's title or text
-router.put('/:id', withAuth, (req, res) => {
-    Post.update(req.body,
-        {
-            where: {
-                id: req.params.id
-            }
-        }
-    )
-    .then(postData => {
-        if (!postData) {
-            res.status(404).json({ message: 'No post with this id' });
-            return;
-        }
-        res.json(postData);
+router.put("/:id", withAuth, (req, res) => {
+  Post.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((postData) => {
+      if (!postData) {
+        res.status(404).json({ message: "No post with this id" });
+        return;
+      }
+      res.json(postData);
     })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err)
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
 // DELETE a post
-router.delete('/:id', withAuth, (req, res) => {
-    Post.destroy({
-      where: {
-        id: req.params.id
+router.delete("/:id", withAuth, (req, res) => {
+  Post.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((postData) => {
+      if (!postData) {
+        res.status(404).json({ message: "No post with this id" });
+        return;
       }
+      res.json(postData);
     })
-      .then(postData => {
-        if (!postData) {
-          res.status(404).json({ message: 'No post with this id' });
-          return;
-        }
-        res.json(postData);
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  });
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;

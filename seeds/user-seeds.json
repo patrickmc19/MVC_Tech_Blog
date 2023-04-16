@@ -1,17 +1,17 @@
 [
-    {
-        "username": "superman",
-        "email": "superman@superman.com",
-        "password": "superman123"
-    },
-    {
-        "username": "batman",
-        "email": "batman@batman.com",
-        "password": "batman123"
-    },
-    {
-        "username": "ironman",
-        "email": "ironman@ironman.com",
-        "password": "ironman123"
-    }
+  {
+    "username": "superman",
+    "email": "superman@superman.com",
+    "password": "superman123"
+  },
+  {
+    "username": "batman",
+    "email": "batman@batman.com",
+    "password": "batman123"
+  },
+  {
+    "username": "ironman",
+    "email": "ironman@ironman.com",
+    "password": "ironman123"
+  }
 ]
