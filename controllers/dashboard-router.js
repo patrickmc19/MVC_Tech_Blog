@@ -37,6 +37,24 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
+router.get('/profile', withAuth, async (req, res) => {
+  try{
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Post }]
+    });
+
+    const user = userData.get({ plain: true });
+
+    res.render('profile', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // render edit post page
 router.get("/edit/:id", withAuth, (req, res) => {
   Post.findOne({

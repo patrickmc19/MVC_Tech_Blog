@@ -1,14 +1,14 @@
 [
   {
     "title": "This is the tech blog",
-    "post_content": "Welcome."
+    "postContent": "Welcome."
   },
   {
     "title": "Great Blog",
-    "post_content": "5 stars."
+    "postContent": "5 stars."
   },
   {
     "title": "I love tech!",
-    "post_content": "This is a great blog."
+    "postContent": "This is a great blog."
   }
 ]

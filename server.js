@@ -5,7 +5,7 @@ const session = require("express-session");
 const path = require("path");
 const sequelize = require("./config/connection");
 const router = require("./controllers");
-const helpers = require("./util/helpers");
+const helpers = require("./utils/helpers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const PORT = process.env.PORT || 3001;

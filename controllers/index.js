@@ -22,7 +22,7 @@ router.use("/", homeRoutes);
 router.use("/dashboard", dashRoutes);
 
 // Catch all to error out routes that are not defined
-router.use(req, (res) => {
+router.use((req, res) => {
   res.status(404).end();
 });
 

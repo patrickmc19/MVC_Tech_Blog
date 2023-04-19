@@ -47,7 +47,7 @@ router.post("/", (req, res) => {
       req.session.save(() => {
         req.session.user_id = userData.id;
         req.session.username = userData.username;
-        req.session.loggedIn = true;
+        req.session.isLoggedIn = true;
 
         res.json(userData);
       });
@@ -80,7 +80,7 @@ router.post("/login", (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
-      req.session.loggedIn = true;
+      req.session.isLoggedIn = true;
 
       res.json({ user: userData, message: "You are now logged in!" });
     });
