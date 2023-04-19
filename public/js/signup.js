@@ -14,7 +14,7 @@ async function signupHandler (event) {
             headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
-            alert('Account created! Welcome to The Tech Blog!');
+            alert(`Account created! Welcome to The Tech Blog ${username}!`);
             document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
