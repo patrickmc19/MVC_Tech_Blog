@@ -15,7 +15,7 @@ async function signupHandler (event) {
         });
         if (response.ok) {
             alert(`Account created! Welcome to The Tech Blog ${username}!`);
-            document.location.replace('/dashboard/profile');
+            document.location.replace('/dashboard/profile ');
         } else {
             alert(response.statusText);
         }
