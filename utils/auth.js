@@ -2,7 +2,7 @@
 // logged in.
 const withAuth = (req, res, next) => {
   // Proceed to next middelware/route handler if user is logged in
-  if (req.session.isLoggedIn) {
+  if (req.session.loggedIn) {
     return next();
   }
 
