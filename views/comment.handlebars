@@ -1,6 +1,16 @@
-<h1>{{post.title}}</h1>
+<div class="row mb-4 post">
+  <div class="col-md-5">
+    <h2>{{post.title}}</h2>
+    <p>{{post.postContent}}</p>
+  </div>
+</div>
 
 <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
 <button type="button" id="comment">Add Comment</button>
 
-{{#each}}
+{{#each comments as |comment|}}
+  <p>{{comment.text}}</p>
+  <p>Posted by {{comment.user.username}} on {{format_date comment.createdAt}}</p>
+{{/each}}
+
+<script src="/js/newComment"></script>
