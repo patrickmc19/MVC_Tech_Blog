@@ -5,12 +5,13 @@
   </div>
 </div>
 
-<textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+<textarea name="commentBody" id="commentText" cols="30" rows="10"></textarea>
 <button type="button" id="comment">Add Comment</button>
 
 {{#each comments as |comment|}}
   <p>{{comment.text}}</p>
   <p>Posted by {{comment.user.username}} on {{format_date comment.createdAt}}</p>
+  <button type="button" class="delete" data-id="{{comment.id}}">Delete</button>
 {{/each}}
 
-<script src="/js/newComment"></script>
+<script src="/js/newComment.js"></script>

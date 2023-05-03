@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
 
 // POST a comment
 router.post("/", withAuth, (req, res) => {
+  console.log(req.body);
   if (req.session) {
     Comment.create({
       text: req.body.text,
@@ -30,16 +31,18 @@ router.post("/", withAuth, (req, res) => {
 
 // DELETE a comment
 router.delete("/:id", withAuth, (req, res) => {
+  console.log(req.params.id);
   Comment.destroy({
     where: {
       id: req.params.id,
+      user_id: req.session.user_id,
     },
   })
     .then((commentData) => {
-      if (!commentData) {
-        res.status(404).json({ message: "No comment found with this id!" });
-        return;
-      }
+      // if (!commentData) {
+      //   res.status(404).json({ message: "No comment found with this id!" });
+      //   return;
+      // }
       res.json(commentData);
     })
     .catch((error) => {

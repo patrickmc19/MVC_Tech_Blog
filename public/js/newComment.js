@@ -22,4 +22,24 @@ async function newCommentHandler(event) {
         }
     }
 }
-document.querySelector('.newCommentForm').addEventListener('submit', newCommentHandler);
+document.querySelector('#comment').addEventListener('click', newCommentHandler);
+
+async function deleteFormHandler(event) {
+    event.preventDefault();
+    const id = this.getAttribute("data-id");
+    alert(id);
+    const response = await fetch(`/api/comments/${id}`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        document.location.reload();
+    } else {
+        alert(response.statusText);
+    }
+}
+
+const deleteComment = document.querySelectorAll('.delete');
+
+for (let i = 0; i < deleteComment.length; i++ ) {
+    deleteComment[i].addEventListener('click', deleteFormHandler);
+}

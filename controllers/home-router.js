@@ -82,6 +82,50 @@ router.get("/post/:id", (req, res) => {
     });
 });
 
+// go to comment handlebar page
+router.get("/comment/:post_id", (req, res) => {
+  Post.findOne({
+    where: {
+      id: req.params.post_id,
+    },
+    attributes: ["id", "postContent", "title", "createdAt"],
+    include: [
+      {
+        model: Comment,
+        attributes: ["id", "text", "post_id", "user_id", "createdAt"],
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      },
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      if (!dbPostData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+
+      // serialize the data
+      const post = dbPostData.get({ plain: true });
+      console.log(post);
+      // pass data to rendered template
+      res.render("comment", {
+        post,
+        comments: post.comments,
+        loggedIn: req.session.loggedIn,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // render login page
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
