@@ -31,7 +31,6 @@ router.post("/", withAuth, (req, res) => {
 
 // DELETE a comment
 router.delete("/:id", withAuth, (req, res) => {
-  console.log(req.params.id);
   Comment.destroy({
     where: {
       id: req.params.id,

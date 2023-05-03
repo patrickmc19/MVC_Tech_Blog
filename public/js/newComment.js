@@ -27,7 +27,6 @@ document.querySelector('#comment').addEventListener('click', newCommentHandler);
 async function deleteFormHandler(event) {
     event.preventDefault();
     const id = this.getAttribute("data-id");
-    alert(id);
     const response = await fetch(`/api/comments/${id}`, {
         method: 'DELETE'
     });
