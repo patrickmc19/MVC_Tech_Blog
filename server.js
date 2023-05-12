@@ -8,7 +8,7 @@ const router = require("./controllers");
 const helpers = require("./utils/helpers");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3306;
 const app = express();
 const hbs = exphbs.create({ helpers });
 
@@ -58,3 +58,7 @@ sequelize
     console.error(err);
     process.exit(1);
   });
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+});
