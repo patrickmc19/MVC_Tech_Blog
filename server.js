@@ -58,7 +58,3 @@ sequelize
     console.error(err);
     process.exit(1);
   });
-
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
-});
